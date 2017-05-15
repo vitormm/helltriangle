@@ -1,5 +1,6 @@
 package com.vitormatta.helltriangle;
 
+import com.vitormatta.helltriangle.core.HellTriangle;
 import org.apache.log4j.Logger;
 
 /**
@@ -14,9 +15,15 @@ public class App
 
     public static void main( String[] args )
     {
-        if (args == null || args.length == 0)
+        if (args == null || args.length == 0 || args[0] == null)
             throw new IllegalArgumentException("You must supply at least one argument");
-        if (args[0] == null)
-            throw new IllegalArgumentException("You must supply at least one argument");
+
+        String inputText = args[0].replace(" ", "").trim();
+        HellTriangle hellTriangle = new HellTriangle(inputText);
+
+        long maxTotal = hellTriangle.getMaxTotal();
+        logger.info("Total: " + maxTotal);
+        System.out.println(maxTotal);
+
     }
 }
